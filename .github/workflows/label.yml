@@ -9,20 +9,35 @@ name: Labeler
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited, reopened]
+  issue_comment:
+    types: [created]    
   pull_request:
-    types: [opened]
+    types: [opened, edited, reopened]
 
-env:
-  MY_GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
-  triage:
+  Inbox:
     runs-on: ubuntu-latest
+    if: ${{ github.event.action == 'opened' || github.event.action == 'reopened' }}
     steps:
-      - name: Assign project
-        uses: srggrs/assign-one-project-github-action@1.2.0  
+      - name: Create or Update Project Card
+        uses: peter-evans/create-or-update-project-card@v1
         with:
-          project: 'https://github.com/orgs/sampledump/projects/1'
-          column_name: 'Inbox'
+          project-name: 'Ticket Playground'
+          column-name: 'Inbox'
+          project-location: 'sampledump'
+          token: ${{ secrets.GH_TOKEN }}
+  Feedback-Provided:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.action == 'created' && (contains(github.event.issue.labels.*.name, 'status: waiting-for-feedback') || contains(github.event.issue.labels.*.name, 'status: feedback-provided')) }}
+    steps:
+      - name: Update Project Card
+        uses: peter-evans/create-or-update-project-card@v1
+        with:
+          project-name: 'Ticket Playground'
+          column-name: 'Feedback provided'
+          project-location: 'sampledump'
+          token: ${{ secrets.GH_TOKEN }}
+
 
