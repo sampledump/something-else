@@ -6,11 +6,15 @@
 # https://github.com/actions/labeler
 
 name: Labeler
+
 on:
   issues:
     types: [opened, edited]
   pull_request:
     types: [opened]
+
+env:
+  MY_GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
   triage:
@@ -20,9 +24,8 @@ jobs:
         uses: andymckay/labeler@master
         with:
           add-labels: "status: waiting-for-triage"
-      - name: Create or Update Project Card
-        uses: mp911de/gh-pr-project@master
+      - name: assign project
+        uses: srggrs/assign-one-project-github-action@1.2.0  
         with:
-          githubToken: ${{ github.token }}
-          projectId: MDc6UHJvamVjdDU4MzQ4ODQ=
+          project: 'https://github.com/orgs/sampledump/projects/1'
 
