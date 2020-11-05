@@ -27,4 +27,4 @@ jobs:
         with:
           project: "Ticket Playground"
           column: "Inbox"
-          repo-token: ${{ github.token }}
+          repo-token: ${{ secrets.GH_TOKEN }}
