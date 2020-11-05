@@ -21,12 +21,11 @@ jobs:
         uses: andymckay/labeler@master
         with:
           add-labels: "status: waiting-for-triage"
-  assign_one_project:
+  assign-to-project:
     runs-on: ubuntu-latest
-    name: Assign to One Project
     steps:
-    - name: Assign NEW issues and NEW pull requests
-      uses: srggrs/assign-one-project-github-action@1.2.0
-      with:
-        project: 'https://github.com/orgs/sampledump/projects/1'
-        column_name: 'Inbox'
+      - uses: alex-page/github-project-automation-plus@v0.3.0
+        with:
+          project: "Ticket Playground"
+          column: "Inbox"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
