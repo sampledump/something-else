@@ -19,7 +19,7 @@ on:
 jobs:
   Inbox:
     runs-on: ubuntu-latest
-    if: ${{ github.event.action == 'opened' || github.event.action == 'reopened' }}
+    if: github.event.action == 'opened' || github.event.action == 'reopened'
     steps:
       - name: Create or Update Project Card
         uses: peter-evans/create-or-update-project-card@v1
@@ -30,7 +30,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
   Feedback-Provided:
     runs-on: ubuntu-latest
-    if: github.event.action == 'created' && contains(join(github.event.issue.labels.*.name, ', '), 'waiting-for-feedback')
+    if: github.event.action == 'created' && (contains(join(github.event.issue.labels.*.name, ', '), 'waiting-for-feedback') || contains(join(github.event.issue.labels.*.name, ', '), 'feedback-provided'))
     steps:
       - name: Update Project Card
         uses: peter-evans/create-or-update-project-card@v1
