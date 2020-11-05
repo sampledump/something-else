@@ -30,7 +30,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
   Feedback-Provided:
     runs-on: ubuntu-latest
-    if: ${{ github.event.action == 'created' }}
+    if: ${{ github.event.action == 'created' && (contains(github.event.issue.labels.*.name, 'status:\ waiting-for-feedback') || contains(github.event.issue.labels.*.name, 'status:\ feedback-provided'))}}
     steps:
       - name: Update Project Card
         uses: peter-evans/create-or-update-project-card@v1
