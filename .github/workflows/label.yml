@@ -21,9 +21,8 @@ jobs:
         with:
           add-labels: "status: waiting-for-triage"
       - name: Create or Update Project Card
-        uses: peter-evans/create-or-update-project-card@master
+      - uses: ookami-kb/gh-pr-project@v1
         with:
-          project-location: sampledump
-          project-name: "Ticket Playground"
-          column-name: "Inbox"
+          githubToken: ${{ github.token }}
+          projectId: MDc6UHJvamVjdDU4MzQ4ODQ=
 
