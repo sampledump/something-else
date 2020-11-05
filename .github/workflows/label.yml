@@ -8,7 +8,7 @@
 name: Labeler
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
   pull_request:
     types: [opened]
 
@@ -20,11 +20,9 @@ jobs:
         uses: andymckay/labeler@master
         with:
           add-labels: "status: waiting-for-triage"
-  assign-to-project:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: alex-page/github-project-automation-plus@v0.3.0
+      - name: Create or Update Project Card
+        uses: peter-evans/create-or-update-project-card@v1
         with:
-          project: "Ticket Playground"
-          column: "Inbox"
-          repo-token: ${{ secrets.GH_TOKEN }}
+          project-name: "Ticket Playground"
+          column-name: "Inbox"
+
