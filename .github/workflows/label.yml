@@ -21,7 +21,7 @@ jobs:
         with:
           add-labels: "status: waiting-for-triage"
       - name: Create or Update Project Card
-        uses: mp911de/gh-pr-project@master
+        uses: mp911de/gh-pr-project@dfe821fa0fbb4bbaedcc979bbc5532bcb15cec76
         with:
           githubToken: ${{ github.token }}
           projectId: MDc6UHJvamVjdDU4MzQ4ODQ=
