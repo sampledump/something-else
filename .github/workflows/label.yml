@@ -9,7 +9,7 @@ name: Labeler
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened]
   pull_request:
     types: [opened]
 
@@ -20,11 +20,7 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-      - name: initial labeling
-        uses: andymckay/labeler@master
-        with:
-          add-labels: "status: waiting-for-triage"
-      - name: assign project
+      - name: Assign project
         uses: srggrs/assign-one-project-github-action@1.2.0  
         with:
           project: 'https://github.com/orgs/sampledump/projects/1'
