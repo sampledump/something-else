@@ -21,8 +21,9 @@ jobs:
         with:
           add-labels: "status: waiting-for-triage"
       - name: Create or Update Project Card
-        uses: peter-evans/create-or-update-project-card@v1
+        uses: peter-evans/create-or-update-project-card@master
         with:
+          project-location: sampledump
           project-name: "Ticket Playground"
           column-name: "Inbox"
 
