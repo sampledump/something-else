@@ -28,6 +28,12 @@ jobs:
           column-name: 'Inbox'
           project-location: 'sampledump'
           token: ${{ secrets.GH_TOKEN }}
+      - name: initial labeling
+        uses: andymckay/labeler@master
+        with:
+          add-labels: "status: waiting-for-triage"
+          ignore-if-assigned: true
+          ignore-if-labeled: true
   Feedback-Provided:
     runs-on: ubuntu-latest
     if: github.event.action == 'created' && (contains(join(github.event.issue.labels.*.name, ', '), 'waiting-for-feedback') || contains(join(github.event.issue.labels.*.name, ', '), 'feedback-provided'))
