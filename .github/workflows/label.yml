@@ -31,7 +31,7 @@ jobs:
         uses: peter-evans/create-or-update-project-card@v1.1.2
         with:
           project-name: 'Ticket Playground'
-          column-name: 'Review pending'
+          column-name: 'Inbox'
           project-location: 'sampledump'
           token: ${{ secrets.GH_TOKEN }}
   Feedback-Provided:
