@@ -32,7 +32,7 @@ jobs:
         with:
           project-name: 'Ticket Playground'
           column-name: 'Review pending'
-          project-location: 'sampleump'
+          project-location: 'sampledump'
           token: ${{ secrets.GH_TOKEN }}
   Feedback-Provided:
     runs-on: ubuntu-latest
