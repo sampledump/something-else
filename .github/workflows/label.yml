@@ -33,6 +33,7 @@ jobs:
           project-name: 'Ticket Playground'
           column-name: 'Inbox'
           project-location: 'sampledump'
+          issue-number: ${{ github.event.pull_request.number }}
           token: ${{ secrets.GH_TOKEN }}
   Feedback-Provided:
     runs-on: ubuntu-latest
