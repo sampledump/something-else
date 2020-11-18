@@ -27,11 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     if: (github.event.action == 'opened' || github.event.action == 'reopened') && github.event.pull_request != null
     steps:
-      - name: Create or Update Issue Card
+      - name: Create or Update Pull Request Card
         uses: peter-evans/create-or-update-project-card@v1
         with:
           project-name: 'Spring Data'
-          column-name: 'Inbox'
+          column-name: 'Review pending'
           project-location: 'spring-projects'
           token: ${{ secrets.GH_TOKEN }}
   Feedback-Provided:
