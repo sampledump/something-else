@@ -17,29 +17,29 @@ jobs:
     if: (github.event.action == 'opened' || github.event.action == 'reopened') && github.event.pull_request == null
     steps:
       - name: Create or Update Issue Card
-        uses: peter-evans/create-or-update-project-card@v1
+        uses: peter-evans/create-or-update-project-card@v1.2.2
         with:
-          project-name: 'Spring Data'
+          project-name: 'Ticket Playground'
           column-name: 'Inbox'
-          project-location: 'spring-projects'
+          project-location: 'sampledump'
           token: ${{ secrets.GH_TOKEN }}
   Pull-Request:
     runs-on: ubuntu-latest
     if: (github.event.action == 'opened' || github.event.action == 'reopened') && github.event.pull_request != null
     steps:
       - name: Create or Update Pull Request Card
-        uses: peter-evans/create-or-update-project-card@v1
+        uses: peter-evans/create-or-update-project-card@v1.2.2
         with:
-          project-name: 'Spring Data'
+          project-name: 'Ticket Playground'
           column-name: 'Review pending'
-          project-location: 'spring-projects'
+          project-location: 'sampleump'
           token: ${{ secrets.GH_TOKEN }}
   Feedback-Provided:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'spring-projects' && github.event.action == 'created' && contains(join(github.event.issue.labels.*.name, ', '), 'waiting-for-feedback')
     steps:
       - name: Update Project Card
-        uses: peter-evans/create-or-update-project-card@v1
+        uses: peter-evans/create-or-update-project-card@v1.2.2
         with:
           project-name: 'Spring Data'
           column-name: 'Feedback provided'
