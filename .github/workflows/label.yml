@@ -31,7 +31,7 @@ jobs:
         uses: peter-evans/create-or-update-project-card@v1.1.2
         with:
           project-name: 'Ticket Playground'
-          column-name: 'Inbox'
+          column-name: 'Review pending'
           project-location: 'sampledump'
           issue-number: ${{ github.event.pull_request.number }}
           token: ${{ secrets.GH_TOKEN }}
