@@ -23,6 +23,17 @@ jobs:
           column-name: 'Inbox'
           project-location: 'sampledump'
           token: ${{ secrets.GH_TOKEN }}
+  Done:
+    runs-on: ubuntu-latest
+    if: (github.event.action == 'closed') && github.event.pull_request == null
+    steps:
+      - name: Update Issue Card
+        uses: peter-evans/create-or-update-project-card@v1.1.2
+        with:
+          project-name: 'Ticket Playground'
+          column-name: 'Done'
+          project-location: 'sampledump'
+          token: ${{ secrets.GH_TOKEN }}
   Pull-Request:
     runs-on: ubuntu-latest
     if: (github.event.action == 'opened' || github.event.action == 'reopened') && github.event.pull_request != null
