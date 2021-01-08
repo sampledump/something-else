@@ -14,7 +14,7 @@ on:
 jobs:
   Inbox:
     runs-on: ubuntu-latest
-    if: (github.event.action == 'opened' || github.event.action == 'reopened') && github.event.pull_request == null
+    if: (github.event.action == 'opened' || github.event.action == 'reopened') && github.event.pull_request == null && !contains(join(github.event.issue.labels.*.name, ', '), 'dependency-upgrade')
     steps:
       - name: Create or Update Issue Card
         uses: peter-evans/create-or-update-project-card@v1.1.2
