@@ -1,0 +1,4 @@
+contact_links:
+  - name: Repost a Security Vulnerability
+    url: https://github.com/sampledump/something-else/security/advisories/new
+    about: Please report security vulnerabilities here.
